@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "AidLink: Frontend",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": { "regexp": "^(?!.*)$", "file": 1, "location": 2, "message": 3 },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "Local:.*http://127\\.0\\.0\\.1:5173"
+        }
+      },
+      "options": { "cwd": "${workspaceFolder}" },
+      "runOptions": { "instanceLimit": 1 },
+      "presentation": { "reveal": "silent", "panel": "dedicated", "group": "AidLink" }
+    },
+    {
+      "label": "AidLink: Backend",
+      "type": "shell",
+      "command": "$healthy = $false; try { $response = Invoke-RestMethod -Uri 'http://127.0.0.1:5000/api/status' -TimeoutSec 1; $healthy = $response.status -eq 'ok' } catch { $healthy = $false }; if ($healthy) { Write-Output 'Backend server running at http://localhost:5000 (existing)' } else { npm.cmd run backend }",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "aidlink-api",
+        "pattern": { "regexp": "^(?!.*)$", "file": 1, "location": 2, "message": 3 },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "Backend server running at http://localhost:5000"
+        }
+      },
+      "options": { "cwd": "${workspaceFolder}" },
+      "runOptions": { "instanceLimit": 1 },
+      "presentation": { "reveal": "silent", "panel": "dedicated", "group": "AidLink" }
+    },
+    {
+      "label": "AidLink: Start full stack",
+      "dependsOn": ["AidLink: Backend", "AidLink: Frontend"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}

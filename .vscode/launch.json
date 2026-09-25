@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "AidLink: Launch full stack",
+      "url": "http://127.0.0.1:5173",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "AidLink: Start full stack",
+      "presentation": {
+        "group": "AidLink",
+        "order": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+server/uploads/*
+!server/uploads/.gitkeep
+*.log
+.env
+.env.*
+!.env.example
+server/data.json
+server/private-letters/*
+docs/outputs/*.json
+docs/outputs/*.backup
+Outputs/*.backup
